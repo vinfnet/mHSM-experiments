@@ -28,7 +28,7 @@ if (-not $PSCmdlet.MyInvocation.BoundParameters.ContainsKey('plainText')) {
 # encrypt a string using mHSM held key
 $byteArray = [system.Text.Encoding]::UTF8.GetBytes($plainText)
 $encryptedData = Invoke-AzKeyVaultKeyOperation -Operation Encrypt -Algorithm RSA1_5 -HsmName $hsmName -Name $keyName -ByteArrayValue $byteArray
-write-host "[" $plainText "] has been encrypted using key [" $keyname "] and is now `n " $encryptedData.RawResult -ForegroundColor Blue
+write-host "[""$plainText""] has been encrypted using key [" $keyname "] by [" $hsmName "] and is now `n " $encryptedData.RawResult -ForegroundColor Blue
 
 # to be sure we aren't cheating, reset the string
 $plainText = "if you can read this, something has gone wrong!"
